@@ -10,7 +10,7 @@ from collections import deque
 
 import os
 # os.environ['CUDA_VISIBLE_DEVICES']='-1'
-from track import tracke,detec,helpers
+from tracker import tracker,detector,helpers
 #from track.detec import get_localization
 import cv2
 import tqdm
