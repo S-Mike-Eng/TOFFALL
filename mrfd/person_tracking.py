@@ -51,7 +51,7 @@ debug = False
 Function to track single person
 
 '''
-import get_localization
+#import get_localization
 def pipeline_single_tracker(det,img,otsu_box,track,draw=False):
     track.frame_count+=1
     org_im=img.copy()
@@ -367,7 +367,7 @@ if __name__ == "__main__":
         print("-------------------------")
         visualize=True
         #Initialization of tracker and detector
-    detector_ = detec.PersonDetector(threshold=float(args.detection_threshold),model_path=config.detector_model_path)
+    detector_ = detector.PersonDetector(threshold=float(args.detection_threshold),model_path=config.detector_model_path)
 
     #Output video frame rate
     frame_rate=10.0
@@ -411,7 +411,7 @@ if __name__ == "__main__":
             #tracking_frames_to_video(tracker,detector,frames,output_path,frame_rate=10.0,otsu_box=True,visualize=False)
             tracking_frames_to_video(detector,frames,output_path,frame_rate,otsu_box,visualize)
         elif output_type=='csv':
-            tracking_frames_to_csv(detec,frames,numbers,output_path,otsu_box,visualize)
+            tracking_frames_to_csv(detector,frames,numbers,output_path,otsu_box,visualize)
         else:
             print("Invalid output_type argument")
             sys.exit()
