@@ -10,8 +10,8 @@ from collections import deque
 
 import os
 # os.environ['CUDA_VISIBLE_DEVICES']='-1'
-
-from tracker import tracker,detector,helpers
+from track import tracke,detec,helpers
+#from track.detec import get_localization
 import cv2
 import tqdm
 import argparse
@@ -51,6 +51,7 @@ debug = False
 Function to track single person
 
 '''
+import get_localization
 def pipeline_single_tracker(det,img,otsu_box,track,draw=False):
     track.frame_count+=1
     org_im=img.copy()
@@ -59,6 +60,7 @@ def pipeline_single_tracker(det,img,otsu_box,track,draw=False):
         print('\nFrame:', track.frame_count,' \n')
     #Detect person in the image
     detect_box = det.get_localization(img) # measurement
+
     final_box=[]
     improved=False
     #check for small box
@@ -365,7 +367,7 @@ if __name__ == "__main__":
         print("-------------------------")
         visualize=True
         #Initialization of tracker and detector
-    detector_ = detector.PersonDetector(threshold=float(args.detection_threshold),model_path=config.detector_model_path)
+    detector_ = detec.PersonDetector(threshold=float(args.detection_threshold),model_path=config.detector_model_path)
 
     #Output video frame rate
     frame_rate=10.0
@@ -409,7 +411,7 @@ if __name__ == "__main__":
             #tracking_frames_to_video(tracker,detector,frames,output_path,frame_rate=10.0,otsu_box=True,visualize=False)
             tracking_frames_to_video(detector,frames,output_path,frame_rate,otsu_box,visualize)
         elif output_type=='csv':
-            tracking_frames_to_csv(detector,frames,numbers,output_path,otsu_box,visualize)
+            tracking_frames_to_csv(detec,frames,numbers,output_path,otsu_box,visualize)
         else:
             print("Invalid output_type argument")
             sys.exit()
