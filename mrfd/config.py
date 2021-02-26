@@ -1,11 +1,11 @@
-root_drive ='../dataset'
+root_drive ='/content/drive/MyDrive/'
 track_root_folder='Thermal_track'
 root_folder='Thermal'
 label_csv_path=root_drive+'/'+root_folder+'/Labels.csv'
 adl_num=9
 fall_num=35
 #Tracking
-detector_model_path='./rfcn_resnet101_coco_2018_01_28'
+detector_model_path='/content/drive/MyDrive/rfcn_resnet101_coco_2018_01_28'
 #Dataset Image dimensions.
 WIDTH=640
 HEIGHT=480
